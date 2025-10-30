@@ -1,5 +1,5 @@
 import random
-from Persona import Persona
+from .Persona import Persona
 
 class Heroe(Persona):
     atributos = ["Código Limpio", "Bien Documentado", "GITGod", "Arquitecto", "Detallista"]
