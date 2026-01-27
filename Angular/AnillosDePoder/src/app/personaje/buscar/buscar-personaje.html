@@ -1,0 +1,45 @@
+
+    <div class="barraBusqueda">
+     <div class="acciones">
+    <table>
+        <tr>
+            <td><button routerLink="/buscar-personaje" id="buscarPersonaje">Buscar Personaje</button></td>
+            <td><button routerLink="/crear-personaje" id="crearPersonaje">Crear Personaje</button></td>
+        </tr>
+    </table>
+    </div>
+    </div>
+
+<div class="tablaPersonajes">
+<table>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Raza
+        </th>
+        <th>
+            Fecha Nacimiento
+        </th>
+        <th>
+            Acciones
+        </th>
+    </tr>
+    
+
+@for (item of personajes; track item.id) {
+    <tr>
+    <td>{{item.nombre}}</td>
+    <td>{{item.raza}}</td>
+    <td>{{item.fechaNacimiento}}</td>
+    <td><input type ="button" id="btnEditar" (click)="editar(item.id)"  value ="Editar"></td>
+    
+    
+    </tr>
+} @empty {
+<li>no hay</li>
+}
+
+</table>
+</div>

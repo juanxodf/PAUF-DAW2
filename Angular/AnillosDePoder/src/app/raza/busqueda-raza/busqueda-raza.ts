@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Anillos } from '../../clases/anillos';
-import { Anillo } from '../../interfaces/anillo';
+import { Razas } from '../../clases/razas';
+import { Raza } from '../../interfaces/raza';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -10,26 +10,26 @@ import { RouterLink } from "@angular/router";
 
 
 @Component({
-  selector: 'app-busqueda',
+  selector: 'app-busqueda-raza',
   imports: [InputTextModule, FormsModule, ButtonModule, CommonModule, RouterLink],
-  templateUrl: './busqueda.html',
-  styleUrl: './busqueda.css',
+  templateUrl: './busqueda-raza.html',
+  styleUrl: './busqueda-raza.css',
 })
-export class Busqueda {
+export class BusquedaRaza {
 
-  anillo = new Anillos()
+  razas = Razas;
 
-
-  anillosFiltrados: Anillo[] = this.anillo.anillos
+  razasFiltradas: Raza[] = this.razas;
   campoBusqueda: string = '';
   buscar() {
 
      const t = this.campoBusqueda.toLowerCase();
 
-    this.anillosFiltrados = this.anillo.anillos.filter(a =>
+    this.razasFiltradas = this.razas.filter(a =>
       a.nombre.toLowerCase().includes(t) ||
-      a.portador.toLowerCase().includes(t) ||
-      a.raza.toLowerCase().includes(t)
+      a.regionPrincipal.toLowerCase().includes(t) ||
+      a.longevidad.toLowerCase().includes(t) ||
+      a.descripcion.toLowerCase().includes(t)
     );
 
   }

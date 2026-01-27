@@ -1,9 +1,19 @@
-<h1>Aplicación de anillos de poder</h1>
-<p>Esta aplicación permite gestionar anillos de poder.</p>
+<header class="hero">
+  <div class="overlay">
+    <h1>Los Anillos de Poder</h1>
+    <p>
+      Antes de la Comunidad.  
+      Antes del Anillo Único.  
+      El origen de la oscuridad.
+    </p>
 
-<!-- Tenemos que hacer que cuando hagamos click en el botón navegar, se redirija a la página de detalle-->
-<p-button routerLink="/detalle" label="Navegar"></p-button>
-
+    <div class="acciones">
+      <button routerLink="/detalle-raza">Explorar Razas</button>
+      <button routerLink="/detalle-anillo">Ver Anillos</button>
+      <button routerLink="/detalle-personaje">Ver Personajes</button>
+    </div>
+  </div>
+</header>
 
 
 <router-outlet />
