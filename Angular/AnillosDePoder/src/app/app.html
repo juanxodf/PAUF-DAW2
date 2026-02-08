@@ -10,10 +10,17 @@
     <div class="acciones">
       <button routerLink="/detalle-raza">Explorar Razas</button>
       <button routerLink="/detalle-anillo">Ver Anillos</button>
-      <button routerLink="/detalle-personaje">Ver Personajes</button>
+      <button routerLink="/detalle-personaje">Personajes</button>
+      <button routerLink="/padre">Clase Modales</button>
+      <button (click)="abrirModal()">Modal</button>
     </div>
   </div>
 </header>
-
+<!--@for (item of paises; track item.name.common) {
+<li>{{ item.name.common }}</li>
+} @empty {
+<li>There are no items.</li>
+}-->
 
 <router-outlet />
+<app-popup-confirmar [config]="confirmDelete"></app-popup-confirmar>

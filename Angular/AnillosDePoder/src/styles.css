@@ -95,3 +95,13 @@ tbody {
 tr {
   border: green 5px solid;
 }
+
+/* Ensure confirm dialogs always overlay page content */
+.p-dialog-mask {
+  z-index: 10000 !important;
+  pointer-events: auto;
+}
+
+.p-confirm-dialog {
+  z-index: 10001 !important;
+}

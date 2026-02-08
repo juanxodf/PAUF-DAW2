@@ -1,45 +1,58 @@
+<div class="barraBusqueda">
+    <div class="acciones">
+        <table>
+            <tr>
+                <td><button routerLink="/buscar-personaje" id="buscarPersonaje">Buscar Personaje</button></td>
+                <td><button routerLink="/crear-personaje" id="crearPersonaje">Crear Personaje</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
 
-    <div class="barraBusqueda">
-     <div class="acciones">
+<p-toast position="top-center" [life]="2000" [baseZIndex]="12000"></p-toast>
+<p-confirmDialog appendTo="body" [modal]="true" [dismissableMask]="false" [blockScroll]="true" [baseZIndex]="10000" [closable]="true" [closeOnEscape]="true"></p-confirmDialog>
+<div class="tablaPersonajes">
     <table>
         <tr>
-            <td><button routerLink="/buscar-personaje" id="buscarPersonaje">Buscar Personaje</button></td>
-            <td><button routerLink="/crear-personaje" id="crearPersonaje">Crear Personaje</button></td>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Raza
+            </th>
+            <th>
+                Fecha Nacimiento
+            </th>
+            <th>
+                Acciones
+            </th>
         </tr>
+
+
+        @for (item of personajes; track item.id) {
+        <tr>
+            <td>{{item.nombre}}</td>
+            <td>{{item.raza}}</td>
+            <td>{{item.fechaNacimiento}}</td>
+            <td>
+                <p-button icon="pi pi-pencil" severity="info" [text]="true" (onClick)="editar(item.id)"></p-button>
+
+                <p-button icon="pi pi-trash" severity="danger" [text]="true"
+                    (onClick)="confirmBajaFisica($event, item)"></p-button>
+
+                @if (!item.fechaBaja) {
+                <p-button icon="pi pi-ban" severity="warn" [text]="true"
+                    (onClick)="confirmBajaLogica($event, item)"></p-button>
+                } @else {
+                <p-button icon="pi pi-refresh" severity="success" [text]="true"
+                    (onClick)="confirmReactivar($event, item)"></p-button>
+                }
+            </td>
+
+        </tr>
+        } @empty {
+        <li>no hay</li>
+        }
+
     </table>
-    </div>
-    </div>
-
-<div class="tablaPersonajes">
-<table>
-    <tr>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Raza
-        </th>
-        <th>
-            Fecha Nacimiento
-        </th>
-        <th>
-            Acciones
-        </th>
-    </tr>
-    
-
-@for (item of personajes; track item.id) {
-    <tr>
-    <td>{{item.nombre}}</td>
-    <td>{{item.raza}}</td>
-    <td>{{item.fechaNacimiento}}</td>
-    <td><input type ="button" id="btnEditar" (click)="editar(item.id)"  value ="Editar"></td>
-    
-    
-    </tr>
-} @empty {
-<li>no hay</li>
-}
-
-</table>
 </div>

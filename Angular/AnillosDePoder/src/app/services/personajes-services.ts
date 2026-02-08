@@ -27,4 +27,16 @@ export class PersonajesService {
   modificarPersonaje(personaje: Personaje,id:number) {
     return this.http.put(`${this.baseUrl}actualizarPersonaje/${id}`,personaje)
   }
+
+    bajaFisica(id: number) {
+    return this.http.delete(`${this.baseUrl}bajaFisica/${id}`);
+  }
+
+  bajaLogica(id: number) {
+    return this.http.put(`${this.baseUrl}bajaLogica/${id}`, {});
+  }
+
+  reactivar(id: number) {
+    return this.http.put(`${this.baseUrl}reactivar/${id}`, {});
+  }
 }
