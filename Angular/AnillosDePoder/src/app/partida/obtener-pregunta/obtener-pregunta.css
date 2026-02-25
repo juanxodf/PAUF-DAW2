@@ -1,0 +1,41 @@
+.juego-wrapper {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.acciones-superiores {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.racha {
+  margin-bottom: 0.75rem;
+}
+
+.pregunta {
+  margin-top: 1rem;
+}
+
+.respuestas {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.estado {
+  margin-top: 0.75rem;
+}
+
+.error {
+  color: #b00020;
+}
+
+@media (min-width: 768px) {
+  .respuestas {
+    grid-template-columns: 1fr 1fr;
+  }
+}

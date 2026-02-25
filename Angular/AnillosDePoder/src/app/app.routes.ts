@@ -9,6 +9,8 @@ import { Buscar} from './personaje/buscar/buscar-personaje';
 import { DetallePersonaje } from './personaje/detalle-personaje/detalle-personaje';
 import { CrearPersonaje } from './personaje/crear-personaje/crear-personaje';
 import { PortadoresComponent } from './portadores-component/portadores-component';
+import { ObtenerPregunta } from './partida/obtener-pregunta/obtener-pregunta';
+import { EstadisticasPartida } from './partida/estadisticas-partida/estadisticas-partida';
 
 export const routes: Routes = [
 
@@ -27,6 +29,8 @@ export const routes: Routes = [
     {path: 'editar/:id', component:CrearPersonaje},  // Ruta para editar un personaje
 
     {path: 'portadores-component', component: PortadoresComponent}, // Ruta para ver los portadores de los anillos
+    {path: 'partida', component: ObtenerPregunta}, // Ruta para jugar una partida
+    {path: 'estadisticas-partida', component: EstadisticasPartida}, // Ruta de estadísticas de partidas
 
 
 ];

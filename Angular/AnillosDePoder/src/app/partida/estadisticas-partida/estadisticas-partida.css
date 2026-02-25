@@ -1,0 +1,19 @@
+.stats-wrapper {
+  max-width: 1000px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.acciones-superiores {
+  margin-bottom: 1rem;
+}
+
+.resumen {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.porcentaje {
+  margin: 1rem 0 0.75rem;
+}

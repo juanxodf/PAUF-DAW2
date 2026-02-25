@@ -1,0 +1,42 @@
+<div class="stats-wrapper">
+  <div class="acciones-superiores">
+    <button pButton label="Volver al juego" severity="secondary" routerLink="/partida"></button>
+  </div>
+
+  <p-card header="Estadísticas de partidas">
+    <div class="resumen">
+      <p>Total partidas: <strong>{{ estadisticas.totalPartidas }}</strong></p>
+      <p>Victorias: <strong>{{ estadisticas.victorias }}</strong></p>
+      <p>Derrotas: <strong>{{ estadisticas.derrotas }}</strong></p>
+      <p>Aciertos totales: <strong>{{ estadisticas.totalAciertos }}</strong></p>
+      <p>Mejor racha: <strong>{{ estadisticas.mejorRacha }}</strong></p>
+    </div>
+
+    <p class="porcentaje">Porcentaje de victorias: {{ porcentajeVictoria | number: '1.0-2' }}%</p>
+    <p-progressbar [value]="porcentajeVictoria"></p-progressbar>
+
+    <h3>Historial</h3>
+
+    <p-table [value]="historial" [tableStyle]="{ 'min-width': '40rem' }">
+      <ng-template #header>
+        <tr>
+          <th>Fecha</th>
+          <th>Resultado</th>
+          <th>Aciertos</th>
+          <th>Preguntas</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.fecha | date: 'short' }}</td>
+          <td>
+            <p-tag [severity]="item.victoria ? 'success' : 'danger'" [value]="item.victoria ? 'Victoria' : 'Derrota'"></p-tag>
+          </td>
+          <td>{{ item.aciertos }}</td>
+          <td>{{ item.preguntasRespondidas }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>

@@ -1,1 +1,48 @@
-<p>obtener-pregunta works!</p>
+<div class="juego-wrapper">
+  <div class="acciones-superiores">
+    <button pButton label="Iniciar partida" severity="warn" (click)="iniciarPartida()" [disabled]="cargando"></button>
+    <button pButton label="Ver estadísticas" severity="secondary" routerLink="/estadisticas-partida"></button>
+  </div>
+
+  <p-toast position="top-center" [life]="2200"></p-toast>
+
+  <p-card header="Trivial: Los Anillos de Poder">
+    @if (partida) {
+      <p class="racha">Aciertos consecutivos: <strong>{{ partida.aciertosConsecutivos }}</strong> / 5</p>
+      <p-progressbar [value]="progreso"></p-progressbar>
+    } @else {
+      <p>Pulsa en "Iniciar partida" para comenzar.</p>
+    }
+
+    @if (cargando) {
+      <p class="estado">Cargando...</p>
+    }
+
+    @if (error) {
+      <p class="estado error">{{ error }}</p>
+    }
+
+    @if (mensaje) {
+      <p class="estado">{{ mensaje }}</p>
+    }
+
+    @if (preguntaActual && partida && !partida.finalizada) {
+      <div class="pregunta">
+        <h3>{{ preguntaActual.enunciado }}</h3>
+
+        <div class="respuestas">
+          @for (opcion of preguntaActual.opciones; track $index) {
+            <button
+              pButton
+              [label]="opcion"
+              severity="contrast"
+              [outlined]="true"
+              (click)="responder($index)"
+              [disabled]="cargando"
+            ></button>
+          }
+        </div>
+      </div>
+    }
+  </p-card>
+</div>

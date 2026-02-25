@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-portadores-component',
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './portadores-component.html',
   styleUrl: './portadores-component.css',
 })
