@@ -46,10 +46,8 @@ export class PartidaService {
 
   constructor(private http: HttpClient) {}
 
-  empezarPartida(): Observable<Partida> {
-    return this.http
-      .post(`${this.baseUrl}empezarPartida/`, null, { responseType: 'text' })
-      .pipe(map((response) => this.normalizarPartida(response)));
+  empezarPartida(): Observable<any> {
+    return this.http.get(`${this.baseUrl}empezarPartida/`)
   }
 
   obtenerPregunta(idPartida: number): Observable<PreguntaPartida> {
