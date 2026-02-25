@@ -105,9 +105,8 @@ export class ObtenerPregunta {
       return;
     }
 
-    this.partida.aciertosConsecutivos += 1;
-
     if (this.modoLocal) {
+      this.partida.aciertosConsecutivos += 1;
       this.messageService.add({
         severity: 'success',
         summary: 'Correcta',
@@ -125,7 +124,10 @@ export class ObtenerPregunta {
     }
 
     this.partidaService.correcta(this.partida.id).subscribe({
-      next: () => {
+      next: (partidaActualizada) => {
+        if (this.partida) {
+          this.partida.aciertosConsecutivos = partidaActualizada.aciertosConsecutivos;
+        }
         this.messageService.add({
           severity: 'success',
           summary: 'Correcta',
@@ -141,7 +143,10 @@ export class ObtenerPregunta {
         this.cargarPregunta();
       },
       error: () => {
-        // Si el backend de correcta falla, mantenemos flujo del juego sin bloquear.
+        // Si el backend de correcta falla, incrementamos manualmente y mantenemos flujo.
+        if (this.partida) {
+          this.partida.aciertosConsecutivos += 1;
+        }
         if (this.partida && this.partida.aciertosConsecutivos >= 5) {
           this.finalizarPartida(true, '¡Enhorabuena! Has ganado la partida.');
           return;

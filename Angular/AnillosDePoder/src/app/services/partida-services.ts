@@ -46,8 +46,10 @@ export class PartidaService {
 
   constructor(private http: HttpClient) {}
 
-  empezarPartida(): Observable<any> {
-    return this.http.get(`${this.baseUrl}empezarPartida/`)
+  empezarPartida(): Observable<Partida> {
+    return this.http
+      .get<unknown>(`${this.baseUrl}empezarPartida/`)
+      .pipe(map((response) => this.normalizarPartida(response)));
   }
 
   obtenerPregunta(idPartida: number): Observable<PreguntaPartida> {
@@ -64,8 +66,10 @@ export class PartidaService {
       .pipe(map((response) => this.normalizarBoolean(response)));
   }
 
-  correcta(idPartida: number): Observable<unknown> {
-    return this.http.put(`${this.baseUrl}correcta/${idPartida}/`, {}, { responseType: 'text' });
+  correcta(idPartida: number): Observable<Partida> {
+    return this.http
+      .put<unknown>(`${this.baseUrl}correcta/${idPartida}/`, {})
+      .pipe(map((response) => this.normalizarPartida(response)));
   }
 
   finalizar(idPartida: number): Observable<unknown> {
@@ -132,8 +136,8 @@ export class PartidaService {
       throw new Error('No se pudo obtener el id de la partida');
     }
 
-    const aciertos = this.leerNumero(record, ['aciertosConsecutivos', 'puntuacion']) ?? 0;
-    const finalizada = this.leerBoolean(record, ['finalizada']) ?? false;
+    const aciertos = this.leerNumero(record, ['aciertosConsecutivos', 'numeroCorrectas', 'puntuacion']) ?? 0;
+    const finalizada = this.leerBoolean(record, ['finalizada', 'finPartida']) ?? false;
 
     return {
       id,
